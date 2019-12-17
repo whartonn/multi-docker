@@ -14,3 +14,10 @@ after_success:
   - docker build -t whartonn/multi-server ./server
   - docker build -t whartonn/multi-worker ./worker
   # take those images and push them to docker hub
+  # log into dockerhub CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push whartonn/multi-client
+  - docker push whartonn/multi-nginx
+  - docker push whartonn/multi-server
+  - docker push whartonn/multi-worker
+  
